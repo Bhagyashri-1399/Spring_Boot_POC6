@@ -24,9 +24,15 @@ public class UserService {
 		return users;
 	}
 	
-	public Optional<User> getUser(Long id) {
-		return useRepository.findById(id);
-	}
+	
+	
+	  public Optional<User> getUser(Long id) { return useRepository.findById(id); }
+	 
+	 
+	
+	
+	/* public User getUser(Long id) { return useRepository.findById(id).get(); } */
+	 
 	
 	public Long addUser(User user) {
 		 useRepository.save(user);
@@ -48,6 +54,8 @@ public class UserService {
 	
 	public User updateUser(Long id,User user) {
 		return useRepository.findById(id).map(u->{
+			u.setFirstName(user.getFirstName());
+			u.setLastName(user.getLastName());
 			u.setPhoneNumber(user.getPhoneNumber());
 			u.setEmail(user.getEmail());
 			u.setCity(user.getCity());
